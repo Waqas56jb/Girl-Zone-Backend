@@ -1,0 +1,17 @@
+-- Registration table: email is the primary key
+CREATE TABLE public.register_users (
+    email         text PRIMARY KEY,
+    first_name    text        NOT NULL,
+    last_name     text        NOT NULL,
+    password_hash text        NOT NULL,
+    created_at    timestamptz NOT NULL DEFAULT now()
+);
+
+-- Login table: mirrors login inputs, also keyed by email
+CREATE TABLE public.login_credentials (
+    email          text PRIMARY KEY,
+    password_hash  text        NOT NULL,
+    remember_me    boolean     NOT NULL DEFAULT false,
+    last_login_at  timestamptz,
+    created_at     timestamptz NOT NULL DEFAULT now()
+); 
